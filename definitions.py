@@ -1,3 +1,22 @@
+
+def parse_mri_headers(directory, useful):
+    #directory pointing to the big mess of *dcm we need to make sense of
+    #useful is a list that defines the pulse sequences we will use for MoCo
+
+    dcmList=glob.glob('*dcm')
+    numUseful=0
+    times=[]
+
+    for i in dcmList:
+        dcm = dicom.read_file(i)
+        isUseful=any(substring in string for substring in substring_list)
+        if not isUseful:
+            continue
+        elif isUseful:
+            a=dcm.SeriesTime
+            times.apped(dcm.SeriesTime)
+
+
 class Subject: #This class will be the main one, everything else will be dependent upon it
     def __init__(self, directory):
         self.pid=directory
@@ -29,15 +48,11 @@ class ListMode(Subject): #This is the main class that holds, reads and processes
                     return time
 
     def read_lm_main(self):
-        import struct
-        with open(self.lmFile,'rb') as lm:
+       import struct
+       with open(self.lmFile,'rb') as lm:
             for line in lm:
-                buff = lm.lineread()
+                 buff = lm.lineread()
 
 
 
 
-#class Times(): # This is going to be a class for dealing with lining up PET/MRI times
-
-
-#def point_to_pet_and_mri(directoryPath):
